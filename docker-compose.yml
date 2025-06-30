@@ -1,10 +1,11 @@
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.4
+            context: ./.docker/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
+                WWWUSER: '${WWWUSER}'
         image: sail-8.4/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
@@ -72,8 +73,8 @@ services:
             - '${MINIO_PORT:-9000}:9000'
             - '${MINIO_CONSOLE_PORT:-8900}:8900'
         environment:
-            MINIO_ROOT_USER: '${MINIO_ROOT_USER:-sail}:sail'
-            MINIO_ROOT_PASSWORD: '${MINIO_ROOT_PASSWORD:-password}:password'
+            MINIO_ROOT_USER: '${MINIO_ROOT_USER:-sail}'
+            MINIO_ROOT_PASSWORD: '${MINIO_ROOT_PASSWORD:-password}'
         volumes:
             - 'sail-minio:/data/minio'
         networks:
