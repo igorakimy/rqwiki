@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Мечник",
+        "plural_name": "Мечники",
+        "parent_id" : null
+    },
+    {
+        "name" : "Стрелок",
+        "plural_name" : "Стрелки",
+        "parent_id" : null
+    },
+    {
+        "name" : "Маг",
+        "plural_name" : "Маги",
+        "parent_id" : null
+    },
+    {
+        "name" : "Вор",
+        "plural_name" : "Воры",
+        "parent_id" : null
+    },
+    {
+        "name" : "Крестоносец",
+        "plural_name" : "Крестоносцы",
+        "parent_id" : 1
+    },
+    {
+        "name" : "Тёмный рыцарь",
+        "plural_name" : "Тёмные рыцари",
+        "parent_id" : 1
+    },
+    {
+        "name" : "Охотник",
+        "plural_name" : "Охотники",
+        "parent_id" : 2
+    },
+    {
+        "name" : "Снайпер",
+        "plural_name" : "Снайперы",
+        "parent_id" : 2
+    },
+    {
+        "name" : "Волшебник",
+        "plural_name" : "Волшебники",
+        "parent_id" : 3
+    },
+    {
+        "name" : "Чернокнижник",
+        "plural_name" : "Чернокнижники",
+        "parent_id" : 3
+    },
+    {
+        "name" : "Разбойник",
+        "plural_name" : "Разбойники",
+        "parent_id" : 4
+    },
+    {
+        "name" : "Ассасин",
+        "plural_name" : "Ассасины",
+        "parent_id" : 4
+    }
+]
