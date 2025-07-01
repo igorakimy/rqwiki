@@ -15,7 +15,11 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasRoles, SoftDeletes, InteractsWithMedia;
+    use HasFactory,
+        Notifiable,
+        HasRoles,
+        SoftDeletes,
+        InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.

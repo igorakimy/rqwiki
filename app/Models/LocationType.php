@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CharacterClass extends Model
+class LocationType extends Model
 {
     protected $guarded = [];
 }
