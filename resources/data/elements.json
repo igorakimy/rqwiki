@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Огонь",
+        "vulnerable_id": 2
+    },
+    {
+        "name": "Вода",
+        "vulnerable_id": 3
+    },
+    {
+        "name": "Воздух",
+        "vulnerable_id": 4
+    },
+    {
+        "name": "Земля",
+        "vulnerable_id": 1
+    },
+    {
+        "name": "Яд",
+        "vulnerable_id": 6
+    },
+    {
+        "name": "Хаос",
+        "vulnerable_id": null
+    },
+    {
+        "name": "Нейтрал",
+        "vulnerable_id": null
+    }
+]
