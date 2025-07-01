@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Element extends Model implements HasMedia
+class Race extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
