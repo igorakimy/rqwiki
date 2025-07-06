@@ -17,6 +17,9 @@ return new class extends Migration
             $table->tinyInteger('required_level')->default(1);
             $table->unsignedInteger('gold')->default(0);
             $table->unsignedInteger('experience')->default(0);
+            $table->text('condition')->nullable();
+            $table->text('condition_description');
+            $table->text('explanation')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('quest_type_id');
             $table->unsignedBigInteger('quest_chain_id');
