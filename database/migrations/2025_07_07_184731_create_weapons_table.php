@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('weapons', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('weapon_type_id');
+            $table->unsignedBigInteger('equipment_type_id');
             $table->enum('item_class', EquipmentItemClassEnum::values())
                 ->default(EquipmentItemClassEnum::C);
             $table->tinyInteger('required_level')->default(1);
-            $table->tinyInteger('max_slots_amount')->default(1);
+            $table->tinyInteger('max_slots_amount')->default(3);
             $table->integer('attack')->default(0);
             $table->double('attack_speed')->default(0.0);
             $table->integer('dps')->default(0);
@@ -31,9 +31,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('weapon_type_id')
+            $table->foreign('equipment_type_id')
                 ->references('id')
-                ->on('weapon_types')
+                ->on('equipment_types')
                 ->onDelete('cascade');
         });
     }

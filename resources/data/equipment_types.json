@@ -1,54 +1,147 @@
 [
     {
         "name": "Головной убор",
-        "plural_name": "Головные уборы"
+        "plural_name": "Головные уборы",
+        "type": "equipment"
     },
     {
         "name": "Доспех",
-        "plural_name": "Доспехи"
+        "plural_name": "Доспехи",
+        "type": "equipment"
     },
     {
         "name": "Обувь",
-        "plural_name": "Обувь"
+        "plural_name": "Обувь",
+        "type": "equipment"
     },
     {
         "name": "Поножи",
-        "plural_name": "Поножи"
+        "plural_name": "Поножи",
+        "type": "equipment"
     },
     {
         "name": "Аксессуар для лица",
-        "plural_name": "Аксессуары для лица"
+        "plural_name": "Аксессуары для лица",
+        "type": "equipment"
     },
     {
         "name": "Кольцо",
-        "plural_name": "Кольца"
+        "plural_name": "Кольца",
+        "type": "equipment"
     },
     {
         "name": "Амулет",
-        "plural_name": "Амулеты"
+        "plural_name": "Амулеты",
+        "type": "equipment"
     },
     {
         "name": "Тотем",
-        "plural_name": "Тотемы"
+        "plural_name": "Тотемы",
+        "type": "equipment"
     },
     {
         "name": "Артефакт",
-        "plural_name": "Артефакты"
+        "plural_name": "Артефакты",
+        "type": "equipment"
     },
     {
         "name": "Щит",
-        "plural_name": "Щиты"
+        "plural_name": "Щиты",
+        "type": "equipment"
     },
     {
         "name": "Орб",
-        "plural_name": "Орбы"
+        "plural_name": "Орбы",
+        "type": "equipment"
     },
     {
         "name": "Костюм",
-        "plural_name": "Костюмы"
+        "plural_name": "Костюмы",
+        "type": "equipment"
     },
     {
         "name": "Украшение",
-        "plural_name": "Украшения"
+        "plural_name": "Украшения",
+        "type": "equipment"
+    },
+    {
+        "name": "Меч",
+        "plural_name": "Мечи",
+        "type": "weapon"
+    },
+    {
+        "name": "Двуручный меч",
+        "plural_name": "Двуручные мечи",
+        "type": "weapon"
+    },
+    {
+        "name": "Кинжал",
+        "plural_name": "Кинжалы",
+        "type": "weapon"
+    },
+    {
+        "name": "Катар",
+        "plural_name": "Катары",
+        "type": "weapon"
+    },
+    {
+        "name": "Топор",
+        "plural_name": "Топоры",
+        "type": "weapon"
+    },
+    {
+        "name": "Двуручный топор",
+        "plural_name": "Двуручные топоры",
+        "type": "weapon"
+    },
+    {
+        "name": "Молот",
+        "plural_name": "Молоты",
+        "type": "weapon"
+    },
+    {
+        "name": "Двуручный молот",
+        "plural_name": "Двуручные молоты",
+        "type": "weapon"
+    },
+    {
+        "name": "Лук",
+        "plural_name": "Луки",
+        "type": "weapon"
+    },
+    {
+        "name": "Мортира",
+        "plural_name": "Мортиры",
+        "type": "weapon"
+    },
+    {
+        "name": "Ружьё",
+        "plural_name": "Ружья",
+        "type": "weapon"
+    },
+    {
+        "name": "Пистолет",
+        "plural_name": "Пистолеты",
+        "type": "weapon"
+    },
+    {
+        "name": "Книга",
+        "plural_name": "Книги",
+        "type": "weapon"
+    },
+    {
+        "name": "Копьё",
+        "plural_name": "Копья",
+        "type": "weapon"
+    },
+    {
+        "name": "Силовой браслет",
+        "plural_name": "Силовые браслеты",
+        "type": "weapon"
+    },
+    {
+        "name": "Коса",
+        "plural_name": "Косы",
+        "type": "weapon"
     }
 ]

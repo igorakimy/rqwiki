@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\EquipmentTypesEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('plural_name');
+            $table->enum('type', EquipmentTypesEnum::values())->default(EquipmentTypesEnum::EQUIPMENT);
             $table->timestamps();
         });
     }
