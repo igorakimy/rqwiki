@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NpcGroups::class);
         $this->call(QuestChain::class);
         $this->call(QuestType::class);
+        $this->call(BonusSeeder::class);
     }
 }

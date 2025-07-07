@@ -1,0 +1,410 @@
+[
+    {
+        "name": "Здоровье",
+        "name_formatted": "к Здоровью",
+        "name_alt": "Максимальное здоровье",
+        "name_alt_formatted": "к Максимальному здоровью",
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Энергия",
+        "name_formatted": "к Энергии",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Мана",
+        "name_formatted": "к Мане",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Атака",
+        "name_formatted": "к Атаке",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Выносливость",
+        "name_formatted": "к Выносливости",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Защита",
+        "name_formatted": "к Защите",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Интеллект",
+        "name_formatted": "к Интеллекту",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Ловкость",
+        "name_formatted": "к Ловкости",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Опыт",
+        "name_formatted": "к Опыту",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Золото",
+        "name_formatted": "к Получаемому золоту",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Сила",
+        "name_formatted": "к Сила",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Скорость атаки",
+        "name_formatted": "к Скорости атаки",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Скорость бега",
+        "name_formatted": "к Скорости бега",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Точность",
+        "name_formatted": "к Точности",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Уворот",
+        "name_formatted": "к Увороту",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Удача",
+        "name_formatted": "к Удаче",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Критический урон",
+        "name_formatted": "к критическому урону",
+        "name_alt": "Сила критического удара",
+        "name_alt_formatted": "к Силе критического удара",
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Рейтинг шанса критического удара",
+        "name_formatted": "к Рейтингу шанса критического удара",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость к атакам Гуманоидов",
+        "name_formatted": "к устойчивости атакам Гуманоидов",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": true,
+        "description": null
+    },
+    {
+        "name": "Устойчивость к PvP урону",
+        "name_formatted": "Устойчивости к PvP урону",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": true,
+        "description": null
+    },
+    {
+        "name": "PvP урон",
+        "name_formatted": "к PvP урону",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": true,
+        "description": null
+    },
+    {
+        "name": "Атака по Гуманоидами",
+        "name_formatted": "к Атаке по Гуманоидам",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость к контролю",
+        "name_formatted": "Устойчивости к контролю",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": true,
+        "description": null
+    },
+    {
+        "name": "Эффект при критическом PvP уроне",
+        "name_formatted": "При получении критического PvP урона с шансом 20%",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": true,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Воздуха",
+        "name_formatted": "к Устойчивости атакам Воздуха",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Огня",
+        "name_formatted": "к Устойчивости атакам Огня",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Земли",
+        "name_formatted": "к Устойчивости атакам Земли",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Воды",
+        "name_formatted": "к Устойчивости атакам Воды",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Хаоса",
+        "name_formatted": "к Устойчивости атакам Хаоса",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Яда",
+        "name_formatted": "к Устойчивости атакам Яда",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость ко всем элементам",
+        "name_formatted": "Устойчивости ко всем элементам",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по существам Воздуха",
+        "name_formatted": "к урону по существам Воздуха",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по существам Огня",
+        "name_formatted": "к урону по существам Огня",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по существам Земли",
+        "name_formatted": "к урону по существам Земли",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по существам Воды",
+        "name_formatted": "к урону по существам Воды",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Механизмам",
+        "name_formatted": "к урону по Механизмам",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Нежити",
+        "name_formatted": "к урону по Нежити",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Растениями",
+        "name_formatted": "к урону по Растениям",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Животным",
+        "name_formatted": "к урону по Животным",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Оркам",
+        "name_formatted": "к урону по Оркам",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон по Чудовищам",
+        "name_formatted": "к урону по Чудовищам",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Устойчивость атакам Животных",
+        "name_formatted": "к устойчивости атакам Животных",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Огнём",
+        "name_formatted": "к урону Огнём",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Водой",
+        "name_formatted": "к урону Водой",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Воздухом",
+        "name_formatted": "к урону Воздухом",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Землёй",
+        "name_formatted": "к урону Землёй",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Ядом",
+        "name_formatted": "к урону Ядом",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Урон Хаосом",
+        "name_formatted": "к урону Хаосом",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Восстановление здоровья",
+        "name_formatted": "к восстановлению здоровья",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Попадание",
+        "name_formatted": "к Попаданию",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    },
+    {
+        "name": "Максимальный запас энергии и маны",
+        "name_formatted": "к Максимальному запасу энергии и маны",
+        "name_alt": null,
+        "name_alt_formatted": null,
+        "is_pvp": false,
+        "description": null
+    }
+]
