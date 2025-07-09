@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\NpcGroups;
-use App\Models\QuestChain;
-use App\Models\QuestType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,13 +17,15 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
+        $this->call(CategorySeeder::class);
         $this->call(CharacterClassSeeder::class);
         $this->call(LocationTypeSeeder::class);
         $this->call(ElementSeeder::class);
         $this->call(RaceSeeder::class);
-        $this->call(NpcGroups::class);
-        $this->call(QuestChain::class);
-        $this->call(QuestType::class);
+        $this->call(NpcGroupsSeeder::class);
+        $this->call(QuestChainSeeder::class);
+        $this->call(QuestTypeSeeder::class);
         $this->call(BonusSeeder::class);
+        $this->call(EquipmentTypesSeeder::class);
     }
 }

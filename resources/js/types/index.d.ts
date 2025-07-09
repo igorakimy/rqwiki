@@ -36,3 +36,15 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export interface Category {
+    id: number;
+    name: string;
+}
+
+export interface Pagination {
+    current_page: number;
+    per_page: number;
+    total: number;
+    last_page: number;
+}

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('name_formatted');
+            $table->string('name_alt')->nullable();
+            $table->string('name_alt_formatted')->nullable();
+            $table->boolean('is_pvp')->default(false);
             $table->text('description')->nullable();
             $table->timestamps();
         });

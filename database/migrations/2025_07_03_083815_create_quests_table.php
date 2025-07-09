@@ -47,7 +47,7 @@ return new class extends Migration
                 ->on('npcs')
                 ->onDelete('cascade');
 
-            $table->foreign('npc_from_id')
+            $table->foreign('npc_to_id')
                 ->references('id')
                 ->on('npcs')
                 ->onDelete('cascade');

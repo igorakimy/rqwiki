@@ -1,15 +1,15 @@
 <?php
 
+use App\Http\Controllers\Categories\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
-
-Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('home');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+Route::resource('categories', CategoryController::class)
+    ->only(['index', 'show']);

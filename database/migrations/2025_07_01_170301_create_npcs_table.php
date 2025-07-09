@@ -19,11 +19,11 @@ return new class extends Migration
 
             $table->foreign('npc_group_id')
                 ->references('id')
-                ->on('npcs_groups')
+                ->on('npc_groups')
                 ->onDelete('cascade');
         });
 
-        Schema::table('location_npcs', function (Blueprint $table) {
+        Schema::create('location_npcs', function (Blueprint $table) {
             $table->foreignId('location_id')->constrained()->cascadeOnDelete();
             $table->foreignId('npc_id')->constrained()->cascadeOnDelete();
 

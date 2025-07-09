@@ -21,7 +21,7 @@ return new class extends Migration {
                 ->constrained()
                 ->cascadeOnDelete();
             $table->unsignedBigInteger('categoriable_id');
-            $table->string('categoriable_id');
+            $table->string('categoriable_type');
         });
     }
 

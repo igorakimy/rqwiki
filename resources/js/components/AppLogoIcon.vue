@@ -9,6 +9,7 @@ interface Props {
     className?: HTMLAttributes['class'];
     width?: number;
     height?: number;
+    currentColor?: string;
 }
 
 withDefaults(defineProps<Props>(), {
