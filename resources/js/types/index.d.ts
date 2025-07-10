@@ -42,9 +42,15 @@ export interface Category {
     name: string;
 }
 
-export interface Pagination {
+export interface DataTablePagination {
     current_page: number;
     per_page: number;
     total: number;
     last_page: number;
+}
+
+export interface DataTableRoutes {
+    index?: string;
+    edit?: string;
+    delete?: string;
 }

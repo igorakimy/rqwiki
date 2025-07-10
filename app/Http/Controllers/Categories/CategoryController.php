@@ -17,8 +17,11 @@ class CategoryController extends Controller
     public function index(Request $request): Response
     {
         $perPage = $request->input('per_page', 10);
+        $sortField = $request->input('sort_field', 'name');
+        $sortDirection = $request->input('sort_direction', 'asc');
 
-        $categories = Category::paginate($perPage);
+        $categories = Category::orderBy($sortField, $sortDirection)
+            ->paginate($perPage);
 
         return Inertia::render('categories/Index', [
             'categories' => CategoryResource::collection($categories->items()),

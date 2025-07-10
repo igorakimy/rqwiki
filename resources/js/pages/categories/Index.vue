@@ -2,7 +2,7 @@
 
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
-import type { BreadcrumbItem, Category, Pagination } from '@/types';
+import type { BreadcrumbItem, Category, DataTablePagination } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import DataTable from '@/components/categories/DataTable.vue';
 import { columns } from '@/components/categories/columns';
@@ -16,7 +16,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 defineProps<{
     categories: Category[];
-    pagination: Pagination;
+    pagination: DataTablePagination;
 }>()
 
 </script>
@@ -30,7 +30,7 @@ defineProps<{
                 <CardHeader class="px-10 pt-2 pb-0 text-left">
                     <CardTitle class="text-xl">Категории</CardTitle>
                     <CardDescription>
-                        Список всех существующих категорий на вики.
+                        Список всех существующих категорий на вики
                     </CardDescription>
                 </CardHeader>
                 <CardContent class="px-10 py-8">

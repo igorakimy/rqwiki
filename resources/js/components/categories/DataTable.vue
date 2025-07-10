@@ -1,6 +1,12 @@
 <script setup lang="ts" generic="TData, TValue">
-import type { ColumnDef, PaginationState } from '@tanstack/vue-table';
-import { FlexRender, getCoreRowModel, getPaginationRowModel, useVueTable } from '@tanstack/vue-table';
+import type { ColumnDef, PaginationState, SortingState, Updater } from '@tanstack/vue-table';
+import {
+    FlexRender,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useVueTable
+} from '@tanstack/vue-table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -8,13 +14,14 @@ import { Button } from '@/components/ui/button';
 import { computed, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-vue-next';
-import type { Pagination } from '@/types';
+import type { DataTablePagination } from '@/types';
+// import { valueUpdater } from '@/lib/utils';
 
 const props = defineProps<{
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     route: string;
-    pagination: Pagination;
+    pagination: DataTablePagination;
 }>()
 
 const pageSizes = [10, 50, 100];
@@ -24,6 +31,8 @@ const pagination = ref<PaginationState>({
     pageSize: props.pagination.per_page,
 })
 
+const sorting = ref<SortingState>([]);
+
 const currentPage = computed(() => table.getState().pagination.pageIndex);
 const perPage = computed(() => table.getState().pagination.pageSize);
 const pageCount = computed(() => table.getPageCount());
@@ -32,32 +41,60 @@ const table = useVueTable({
     get data() { return props.data },
     get columns() { return props.columns },
     state: {
-        pagination: pagination.value
+        get sorting() { return sorting.value },
+        get pagination() { return pagination.value },
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     pageCount: props.pagination.last_page,
     manualPagination: true,
-    onPaginationChange: updater => {
-        if (typeof updater === 'function') {
-            setPagination(updater({
-                pageIndex: pagination.value.pageIndex,
-                pageSize: pagination.value.pageSize,
-            }))
-        } else {
-            setPagination(updater)
-        }
-        router.get(props.route, {
-            page: pagination.value.pageIndex + 1,
-            per_page: pagination.value.pageSize,
-        }, {
-            preserveState: false,
-            preserveScroll: true,
-        })
-    }
+    manualSorting: true,
+    onPaginationChange: changePagination,
+    onSortingChange: changeSorting,
 })
 
-function setPagination({pageIndex,pageSize,}: PaginationState): PaginationState {
+function changePagination(updater) {
+    if (typeof updater === 'function') {
+        setPagination(updater({
+            pageIndex: pagination.value.pageIndex,
+            pageSize: pagination.value.pageSize,
+        }))
+    } else {
+        setPagination(updater)
+    }
+    router.get(props.route, {
+        page: pagination.value.pageIndex + 1,
+        per_page: pagination.value.pageSize,
+        sort_field: sorting.value[0]?.id,
+        sort_direction: sorting.value.length == 0 ? undefined : (sorting.value[0]?.desc ? "desc" : "asc"),
+    }, {
+        preserveState: false,
+        preserveScroll: true,
+    })
+}
+
+function changeSorting<T extends Updater<any>>(updaterOrValue: T) {
+    sorting.value = typeof updaterOrValue === 'function'
+            ? updaterOrValue(sorting.value)
+            : updaterOrValue;
+
+    router.get(
+        props.route,
+        {
+            page: pagination.value.pageIndex + 1,
+            per_page: pagination.value.pageSize,
+            sort_field: sorting.value[0]?.id,
+            sort_direction: sorting.value.length == 0 ? undefined : (sorting.value[0]?.desc ? "desc" : "asc"),
+        },
+        {
+            preserveState: true,
+            preserveScroll: true
+        }
+    );
+}
+
+function setPagination({pageIndex,pageSize}: PaginationState): PaginationState {
     pagination.value.pageIndex = pageIndex
     pagination.value.pageSize = pageSize
     return { pageIndex, pageSize }
