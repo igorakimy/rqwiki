@@ -49,8 +49,23 @@ export interface DataTablePagination {
     last_page: number;
 }
 
+export interface DataTableFilter {
+    id: string,
+    value: string,
+}
+
 export interface DataTableRoutes {
     index?: string;
-    edit?: string;
-    delete?: string;
+    show?: {
+        url: string;
+        id: string;
+    };
+    edit?: {
+        url: string;
+        id: string;
+    };
+    destroy?: {
+        url: string;
+        id: string;
+    };
 }

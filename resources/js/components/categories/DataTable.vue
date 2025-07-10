@@ -1,27 +1,29 @@
 <script setup lang="ts" generic="TData, TValue">
-import type { ColumnDef, PaginationState, SortingState, Updater } from '@tanstack/vue-table';
+import type { ColumnDef, ColumnFiltersState, PaginationState, SortingState, Updater } from '@tanstack/vue-table';
 import {
     FlexRender,
     getCoreRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    getFilteredRowModel,
     useVueTable
 } from '@tanstack/vue-table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { computed, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-vue-next';
-import type { DataTablePagination } from '@/types';
-// import { valueUpdater } from '@/lib/utils';
+import type { DataTablePagination, DataTableRoutes } from '@/types';
 
 const props = defineProps<{
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
-    route: string;
+    routes: DataTableRoutes;
     pagination: DataTablePagination;
+    filters: Array;
 }>()
 
 const pageSizes = [10, 50, 100];
@@ -33,9 +35,10 @@ const pagination = ref<PaginationState>({
 
 const sorting = ref<SortingState>([]);
 
-const currentPage = computed(() => table.getState().pagination.pageIndex);
-const perPage = computed(() => table.getState().pagination.pageSize);
-const pageCount = computed(() => table.getPageCount());
+const columnFilters = ref<ColumnFiltersState>(props.filters ?? []);
+
+const currentPage = computed (() => props.pagination.current_page - 1);
+const pageCount = computed(() => props.pagination.last_page);
 
 const table = useVueTable({
     get data() { return props.data },
@@ -43,49 +46,68 @@ const table = useVueTable({
     state: {
         get sorting() { return sorting.value },
         get pagination() { return pagination.value },
+        set pagination(value) { pagination.value = value },
+        get columnFilters() { return columnFilters.value },
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    pageCount: props.pagination.last_page,
+    getFilteredRowModel: getFilteredRowModel(),
     manualPagination: true,
     manualSorting: true,
+    manualFiltering: true,
     onPaginationChange: changePagination,
     onSortingChange: changeSorting,
+    onColumnFiltersChange: changeFilters,
 })
 
 function changePagination(updater) {
-    if (typeof updater === 'function') {
-        setPagination(updater({
-            pageIndex: pagination.value.pageIndex,
-            pageSize: pagination.value.pageSize,
-        }))
-    } else {
-        setPagination(updater)
+    pagination.value = typeof updater === 'function'
+        ? updater(pagination.value)
+        : updater;
+
+    let filters = {};
+
+    if (columnFilters.value) {
+        filters = columnFilters.value.reduce((acc, filter) => {
+            acc[filter.id] = filter.value
+            return acc
+        }, {})
     }
-    router.get(props.route, {
+
+    router.get(props.routes.index, {
         page: pagination.value.pageIndex + 1,
         per_page: pagination.value.pageSize,
         sort_field: sorting.value[0]?.id,
         sort_direction: sorting.value.length == 0 ? undefined : (sorting.value[0]?.desc ? "desc" : "asc"),
+        ...filters
     }, {
-        preserveState: false,
+        preserveState: true,
         preserveScroll: true,
     })
 }
 
-function changeSorting<T extends Updater<any>>(updaterOrValue: T) {
+function changeSorting(updaterOrValue) {
     sorting.value = typeof updaterOrValue === 'function'
             ? updaterOrValue(sorting.value)
             : updaterOrValue;
 
+    let filters = {};
+    if (columnFilters.value) {
+        filters = columnFilters.value.reduce((acc, filter) => {
+            acc[filter.id] = filter.value
+            return acc
+        }, {})
+    }
+
     router.get(
-        props.route,
+        props.routes.index,
         {
             page: pagination.value.pageIndex + 1,
             per_page: pagination.value.pageSize,
             sort_field: sorting.value[0]?.id,
             sort_direction: sorting.value.length == 0 ? undefined : (sorting.value[0]?.desc ? "desc" : "asc"),
+            ...filters
         },
         {
             preserveState: true,
@@ -94,10 +116,32 @@ function changeSorting<T extends Updater<any>>(updaterOrValue: T) {
     );
 }
 
-function setPagination({pageIndex,pageSize}: PaginationState): PaginationState {
-    pagination.value.pageIndex = pageIndex
-    pagination.value.pageSize = pageSize
-    return { pageIndex, pageSize }
+function changeFilters(updaterOrValue) {
+    columnFilters.value = typeof updaterOrValue === 'function'
+        ? updaterOrValue(columnFilters.value)
+        : updaterOrValue;
+
+    let filters = {};
+
+    if (columnFilters.value) {
+        filters = columnFilters.value.reduce((acc, filter) => {
+            acc[filter.id] = filter.value
+            return acc
+        }, {})
+    }
+
+    pagination.value.pageIndex = 0;
+
+    router.get(props.routes.index, {
+        page: pagination.value.pageIndex + 1,
+        per_page: pagination.value.pageSize,
+        sort_field: sorting.value[0]?.id,
+        sort_direction: sorting.value.length == 0 ? undefined : (sorting.value[0]?.desc ? "desc" : "asc"),
+        ...filters
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+    })
 }
 
 function getPages(current, total, delta = 2) {
@@ -120,16 +164,14 @@ function getPages(current, total, delta = 2) {
 
 const pagesToShow = computed(() => getPages(currentPage.value, pageCount.value));
 
-const start = computed(() => props.pagination.total === 0 ? 0 : currentPage.value * perPage.value + 1)
-
-const end = computed(() => {
-    const possibleEnd = (currentPage.value + 1) * perPage.value
-    return possibleEnd > props.pagination.total ? props.pagination.total : possibleEnd
-})
-
 </script>
 
 <template>
+    <div class="flex items-center py-4">
+        <Input class="max-w-sm" placeholder="Поиск..."
+               :model-value="table.getColumn('name')?.getFilterValue() as string"
+               @update:model-value="table.getColumn('name')?.setFilterValue($event)" />
+    </div>
     <div class="border rounded-md">
         <Table>
             <TableHeader>
@@ -165,9 +207,6 @@ const end = computed(() => {
     </div>
 
     <div class="flex items-center justify-end space-x-2 py-4">
-        <div class="flex-1 text-sm text-muted-foreground">
-            {{ start }} - {{ end }} записи показаны
-        </div>
         <div class="flex items-center space-x-2">
             <p class="text-sm font-medium">Записей на странице</p>
             <Select :model-value="table.getState().pagination.pageSize" @update:model-value="(value) => table.setPageSize(Number(value))">
@@ -208,25 +247,6 @@ const end = computed(() => {
                 <Button variant="outline" class="hidden h-8 w-8 p-0 lg:flex" :disabled="!table.getCanNextPage()" @click="() => table.setPageIndex(table.getPageCount() - 1)">
                     <ChevronsRightIcon class="h-4 w-4" />
                 </Button>
-<!--                <Pagination v-slot="{ page }" :items-per-page="pagination.pageSize" :total="table.getTotalSize()" :default-page="1">-->
-<!--                    <PaginationContent v-slot="{ items }">-->
-<!--                        <PaginationPrevious />-->
-
-<!--                        <template v-for="(item, index) in items" :key="index">-->
-<!--                            <PaginationItem-->
-<!--                                v-if="item.type === 'page'"-->
-<!--                                :value="item.value"-->
-<!--                                :is-active="item.value === page"-->
-<!--                            >-->
-<!--                                {{ item.value }}-->
-<!--                            </PaginationItem>-->
-<!--                        </template>-->
-
-<!--                        <PaginationEllipsis :index="4" />-->
-
-<!--                        <PaginationNext />-->
-<!--                    </PaginationContent>-->
-<!--                </Pagination>-->
             </div>
         </div>
     </div>

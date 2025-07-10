@@ -7,8 +7,8 @@ defineOptions({
 
 interface Props {
     className?: HTMLAttributes['class'];
-    width?: number;
-    height?: number;
+    width?: number | string;
+    height?: number | string;
     currentColor?: string;
 }
 

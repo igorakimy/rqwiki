@@ -17,8 +17,12 @@ export const columns: ColumnDef<Category>[] = [
         },
         cell: ({ row }) => {
             const name = row.getValue('name')
-            return h(Link, { class: 'text-left font-medium', href: route('categories.show', {id: row.getValue('id')}) }, name)
+            return h(Link, {
+                class: 'text-left font-medium',
+                href: route('categories.show', {id: row.getValue('id')})
+            }, () => name)
         },
+        enableColumnFilter: true,
     },
     {
         accessorKey: 'id',

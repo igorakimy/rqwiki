@@ -19,9 +19,19 @@ class CategoryController extends Controller
         $perPage = $request->input('per_page', 10);
         $sortField = $request->input('sort_field', 'name');
         $sortDirection = $request->input('sort_direction', 'asc');
+        $name = $request->input('name');
 
-        $categories = Category::orderBy($sortField, $sortDirection)
-            ->paginate($perPage);
+        $query = Category::query();
+
+        if ($request->filled('name')) {
+            $query->whereLike('name', '%' . $name . '%', boolean: 'or');
+        }
+
+        $categories = $query->orderBy($sortField, $sortDirection)
+            ->paginate($perPage)
+            ->withQueryString();
+
+//        dd($categories);
 
         return Inertia::render('categories/Index', [
             'categories' => CategoryResource::collection($categories->items()),
@@ -30,7 +40,10 @@ class CategoryController extends Controller
                 'per_page' => $categories->perPage(),
                 'total' => $categories->total(),
                 'last_page' => $categories->lastPage(),
-            ]
+            ],
+            'filters' => [
+                ['name' => $name],
+            ],
         ]);
     }
 

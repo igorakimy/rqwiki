@@ -6,6 +6,7 @@ import type { BreadcrumbItem, Category, DataTablePagination } from '@/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import DataTable from '@/components/categories/DataTable.vue';
 import { columns } from '@/components/categories/columns';
+import type { DataTableRoutes } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -14,9 +15,14 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+const routes: DataTableRoutes = {
+    index: route('categories.index'),
+}
+
 defineProps<{
     categories: Category[];
     pagination: DataTablePagination;
+    filters: Array;
 }>()
 
 </script>
@@ -38,8 +44,9 @@ defineProps<{
                     <DataTable
                         :data="categories"
                         :columns="columns"
+                        :routes="routes"
                         :pagination="pagination"
-                        :route="route('categories.index')"
+                        :filters="filters"
                     />
                 </CardContent>
             </Card>
