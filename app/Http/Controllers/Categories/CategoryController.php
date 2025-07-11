@@ -31,8 +31,6 @@ class CategoryController extends Controller
             ->paginate($perPage)
             ->withQueryString();
 
-//        dd($categories);
-
         return Inertia::render('categories/Index', [
             'categories' => CategoryResource::collection($categories->items()),
             'pagination' => [
