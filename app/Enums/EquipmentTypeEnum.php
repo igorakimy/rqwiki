@@ -6,7 +6,7 @@ namespace App\Enums;
 
 use App\Traits\EnumToArray;
 
-enum EquipmentTypesEnum: string
+enum EquipmentTypeEnum: string
 {
     use EnumToArray;
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Enums\BonusesValueTypeEnum;
-use App\Enums\SealColorsEnum;
+use App\Enums\SealColorEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->text('special_property')->nullable();
             $table->json('additional_properties')->nullable();
             $table->integer('order')->default(0);
-            $table->enum('seal_color', SealColorsEnum::values())->nullable();
+            $table->enum('seal_color', SealColorEnum::values())->nullable();
 
             $table->foreign('bonus_id')
                 ->references('id')

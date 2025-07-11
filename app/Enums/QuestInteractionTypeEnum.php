@@ -10,7 +10,7 @@ enum QuestInteractionTypeEnum: string
 {
     use EnumToArray;
 
-    case BRING = 'Принести';
-    case TAKE = 'Отнести';
-    case KILL = 'Убить';
+    case BRING = 'принести';
+    case TAKE = 'отнести';
+    case KILL = 'убить';
 }

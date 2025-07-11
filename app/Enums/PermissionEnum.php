@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum PermissionsEnum: string
+enum PermissionEnum: string
 {
     case VIEW_ROLES = 'view_roles';
     case ASSIGN_ROLES = 'assign_roles';

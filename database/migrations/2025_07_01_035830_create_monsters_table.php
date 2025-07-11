@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\MonsterDefencesEnum;
-use App\Enums\MonsterModesEnum;
+use App\Enums\MonsterDefenceEnum;
+use App\Enums\MonsterModeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,10 +24,10 @@ return new class extends Migration
             $table->boolean('is_boss')->default(false);
             $table->boolean('pick_up_loot')->default(false);
             $table->unsignedInteger('shield')->nullable();
-            $table->enum('defence', MonsterDefencesEnum::values())->default(MonsterDefencesEnum::NO_DEF->value);
+            $table->enum('defence', MonsterDefenceEnum::values())->default(MonsterDefenceEnum::NO_DEF->value);
             $table->unsignedInteger('experience')->default(0);
             $table->decimal('xp_per_hp')->default(0.00);
-            $table->enum('combat_mode', MonsterModesEnum::values())->default(MonsterModesEnum::MELEE->value);
+            $table->enum('combat_mode', MonsterModeEnum::values())->default(MonsterModeEnum::MELEE->value);
             $table->boolean('quest_only')->default(false);
             $table->timestamps();
 

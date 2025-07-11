@@ -6,7 +6,7 @@ namespace App\Enums;
 
 use App\Traits\EnumToArray;
 
-enum MonsterDefencesEnum: string
+enum MonsterDefenceEnum: string
 {
     use EnumToArray;
 

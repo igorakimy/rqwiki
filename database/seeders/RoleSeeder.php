@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\PermissionsEnum;
-use App\Enums\RolesEnum;
+use App\Enums\PermissionEnum;
+use App\Enums\RoleEnum;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,16 +20,16 @@ class RoleSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $permissions = PermissionsEnum::cases();
+        $permissions = PermissionEnum::cases();
 
-        $roles = RolesEnum::cases();
+        $roles = RoleEnum::cases();
 
         foreach ($roles as $role) {
             $createdRole = Role::create([
                 'name' => $role->value,
             ]);
 
-            if ($createdRole->name == RolesEnum::SUPER_ADMIN->value) {
+            if ($createdRole->name == RoleEnum::SUPER_ADMIN->value) {
                 foreach ($permissions as $permission) {
                     $createdRole->givePermissionTo($permission);
                 }

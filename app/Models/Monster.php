@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\MonsterDefencesEnum;
-use App\Enums\MonsterModesEnum;
+use App\Enums\MonsterDefenceEnum;
+use App\Enums\MonsterModeEnum;
 use App\Traits\HasCategories;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -17,7 +17,7 @@ class Monster extends Model implements HasMedia
     protected $guarded = [];
 
     protected $casts = [
-        'defence' => MonsterDefencesEnum::class,
-        'mode' => MonsterModesEnum::class,
+        'defence' => MonsterDefenceEnum::class,
+        'mode' => MonsterModeEnum::class,
     ];
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\RolesEnum;
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +20,6 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@example.com',
         ]);
 
-        $user->assignRole(RolesEnum::SUPER_ADMIN);
+        $user->assignRole(RoleEnum::SUPER_ADMIN);
     }
 }

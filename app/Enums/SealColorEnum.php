@@ -6,7 +6,7 @@ namespace App\Enums;
 
 use App\Traits\EnumToArray;
 
-enum SealColorsEnum: string
+enum SealColorEnum: string
 {
     use EnumToArray;
 
