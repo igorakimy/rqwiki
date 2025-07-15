@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="TData, TValue">
-import type { ColumnDef, ColumnFiltersState, PaginationState, SortingState, Updater } from '@tanstack/vue-table';
+import type { ColumnDef, ColumnFiltersState, PaginationState, SortingState } from '@tanstack/vue-table';
 import {
     FlexRender,
     getCoreRowModel,
@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-vue-next';
@@ -22,8 +23,9 @@ const props = defineProps<{
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     routes: DataTableRoutes;
-    pagination: DataTablePagination;
-    filters: Array;
+    pagination?: DataTablePagination;
+    filters?: Array;
+    columnVisibility?: object;
 }>()
 
 const pageSizes = [10, 50, 100];
@@ -37,6 +39,8 @@ const sorting = ref<SortingState>([]);
 
 const columnFilters = ref<ColumnFiltersState>(props.filters ?? []);
 
+const columnVisibility = ref(props.columnVisibility || {});
+
 const currentPage = computed (() => props.pagination.current_page - 1);
 const pageCount = computed(() => props.pagination.last_page);
 
@@ -48,6 +52,7 @@ const table = useVueTable({
         get pagination() { return pagination.value },
         set pagination(value) { pagination.value = value },
         get columnFilters() { return columnFilters.value },
+        get columnVisibility() { return columnVisibility.value },
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -75,7 +80,7 @@ function changePagination(updater) {
         }, {})
     }
 
-    router.get(props.routes.index, {
+    router.get(props.routes?.index || route(route().current()), {
         page: pagination.value.pageIndex + 1,
         per_page: pagination.value.pageSize,
         sort_field: sorting.value[0]?.id,
@@ -101,7 +106,7 @@ function changeSorting(updaterOrValue) {
     }
 
     router.get(
-        props.routes.index,
+        props.routes?.index || route(route().current()),
         {
             page: pagination.value.pageIndex + 1,
             per_page: pagination.value.pageSize,
@@ -132,7 +137,7 @@ function changeFilters(updaterOrValue) {
 
     pagination.value.pageIndex = 0;
 
-    router.get(props.routes.index, {
+    router.get(props.routes?.index || route(route().current()), {
         page: pagination.value.pageIndex + 1,
         per_page: pagination.value.pageSize,
         sort_field: sorting.value[0]?.id,
@@ -167,10 +172,14 @@ const pagesToShow = computed(() => getPages(currentPage.value, pageCount.value))
 </script>
 
 <template>
-    <div class="flex items-center py-4">
+    <div class="flex justify-between py-4">
         <Input class="max-w-sm" placeholder="Поиск..."
                :model-value="table.getColumn('name')?.getFilterValue() as string"
                @update:model-value="table.getColumn('name')?.setFilterValue($event)" />
+
+        <Link v-if="routes.create" :href="props.routes.create || route(route().current())" >
+            <Button variant="default">Добавить</Button>
+        </Link>
     </div>
     <div class="border rounded-md">
         <Table>

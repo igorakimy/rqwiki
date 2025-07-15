@@ -25,7 +25,10 @@ return new class extends Migration
         });
 
         Schema::create('bonusables', function (Blueprint $table) {
-            $table->unsignedBigInteger('bonus_id');
+            $table->foreignId('bonus_id')
+                ->constrained('bonuses')
+                ->cascadeOnDelete();
+
             $table->unsignedBigInteger('bonusable_id');
             $table->string('bonusable_type');
             $table->integer('value')->default(0)->nullable();
@@ -37,11 +40,6 @@ return new class extends Migration
             $table->json('additional_properties')->nullable();
             $table->integer('order')->default(0);
             $table->enum('seal_color', SealColorEnum::values())->nullable();
-
-            $table->foreign('bonus_id')
-                ->references('id')
-                ->on('bonuses')
-                ->onDelete('cascade');
         });
     }
 
@@ -50,6 +48,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('bonusables');
         Schema::dropIfExists('bonuses');
     }
 };

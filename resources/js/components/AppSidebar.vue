@@ -27,7 +27,12 @@ const mainNavItems: NavItem[] = [
     },
 ];
 
-const footerNavItems: NavItem[] = [];
+const footerNavItems: NavItem[] = [
+    {
+        title: 'Изображения',
+        href: '/images'
+    },
+];
 </script>
 
 <template>

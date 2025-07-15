@@ -80,6 +80,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('monster_has_called_monsters');
+        Schema::dropIfExists('location_monsters');
         Schema::dropIfExists('monsters');
     }
 };

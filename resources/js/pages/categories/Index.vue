@@ -3,10 +3,16 @@
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, Category, DataTablePagination } from '@/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import DataTable from '@/components/categories/DataTable.vue';
+import DataTable from '@/components/DataTable.vue';
 import { columns } from '@/components/categories/columns';
 import type { DataTableRoutes } from '@/types';
+import Heading from '@/components/Heading.vue';
+
+interface Props {
+    categories: Category[];
+    pagination: DataTablePagination;
+    filters: Array;
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -19,11 +25,7 @@ const routes: DataTableRoutes = {
     index: route('categories.index'),
 }
 
-defineProps<{
-    categories: Category[];
-    pagination: DataTablePagination;
-    filters: Array;
-}>()
+defineProps<Props>();
 
 </script>
 
@@ -31,25 +33,16 @@ defineProps<{
     <Head title="Категории" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <Card class="rounded-xl">
-                <CardHeader class="px-10 pt-2 pb-0 text-left">
-                    <CardTitle class="text-xl">Категории</CardTitle>
-                    <CardDescription>
-                        Список всех существующих категорий на вики
-                    </CardDescription>
-                </CardHeader>
-                <CardContent class="px-10 py-8">
-<!--                    <slot />-->
-                    <DataTable
-                        :data="categories"
-                        :columns="columns"
-                        :routes="routes"
-                        :pagination="pagination"
-                        :filters="filters"
-                    />
-                </CardContent>
-            </Card>
+        <div class="px-4 py-6">
+            <Heading title="Категории" description="Список всех существующих категорий на вики" />
+
+            <DataTable
+                :data="categories"
+                :columns="columns"
+                :routes="routes"
+                :pagination="pagination"
+                :filters="filters"
+            />
         </div>
     </AppLayout>
 </template>

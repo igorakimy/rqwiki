@@ -20,8 +20,13 @@ return new class extends Migration
         });
 
         Schema::create('card_equipment_types', function (Blueprint $table) {
-            $table->unsignedBigInteger('card_id');
-            $table->unsignedBigInteger('equipment_type_id');
+            $table->foreignId('card_id')
+                ->constrained('cards')
+                ->cascadeOnDelete();
+
+            $table->foreignId('equipment_type_id')
+                ->constrained('equipment_types')
+                ->cascadeOnDelete();
 
             $table->primary(['card_id', 'equipment_type_id']);
         });
@@ -32,6 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('card_equipment_types');
         Schema::dropIfExists('cards');
     }
 };

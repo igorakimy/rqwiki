@@ -18,8 +18,13 @@ return new class extends Migration
         });
 
         Schema::create('seal_equipment_types', function (Blueprint $table) {
-            $table->unsignedBigInteger('seal_id');
-            $table->unsignedBigInteger('equipment_type_id');
+            $table->foreignId('seal_id')
+                ->constrained('seals')
+                ->cascadeOnDelete();
+
+            $table->foreignId('equipment_type_id')
+                ->constrained('equipment_types')
+                ->cascadeOnDelete();
 
             $table->primary(['seal_id', 'equipment_type_id']);
         });
@@ -30,6 +35,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('seal_equipment_types');
         Schema::dropIfExists('seals');
     }
 };

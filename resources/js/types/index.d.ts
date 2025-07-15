@@ -54,18 +54,37 @@ export interface DataTableFilter {
     value: string,
 }
 
+export interface DataTableRoute {
+    url: string;
+    id: string;
+}
+
 export interface DataTableRoutes {
     index?: string;
-    show?: {
-        url: string;
-        id: string;
-    };
-    edit?: {
-        url: string;
-        id: string;
-    };
-    destroy?: {
-        url: string;
-        id: string;
-    };
+    create?: string;
+    show?: DataTableRoute;
+    edit?: DataTableRoute;
+    destroy?: DataTableRoute;
+}
+
+export interface Media {
+    id: number;
+    name: string;
+    file_name: string;
+    size: number;
+    generated_conversions: Array,
+    original_url: string;
+    collection_name: string;
+}
+
+export interface Image {
+    id: number;
+    name: string;
+    description?: string;
+    media?: Media[];
+}
+
+interface MediaCollection {
+    name: string;
+    formatted_name: string;
 }

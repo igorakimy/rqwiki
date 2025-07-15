@@ -15,14 +15,14 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ImageTypeEnum::cases())
+            $table->enum('type', ImageTypeEnum::values())
                 ->default(ImageTypeEnum::IMAGE->value);
             $table->text('description')->nullable();
             $table->timestamps();
         });
 
         Schema::create('imageables', function (Blueprint $table) {
-            $table->unsignedBigInteger('image_id');
+            $table->foreignId('image_id')->constrained()->cascadeOnDelete();
             $table->unsignedBigInteger('imageable_id');
             $table->string('imageable_type');
         });
@@ -33,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('imageables');
         Schema::dropIfExists('images');
     }
 };
