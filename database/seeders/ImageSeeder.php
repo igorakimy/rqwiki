@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MediaCollectionEnum;
 use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 
 class ImageSeeder extends Seeder
@@ -17,12 +20,26 @@ class ImageSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 10; $i++) {
-            /** @var Image $image */
-            $image = Image::factory()->create();
+        $imagesFilePath = resource_path('images');
 
-            $image->addMediaFromUrl('https://picsum.photos/300/200')
-                ->toMediaCollection();
+        $locationsImagesFilePath = $imagesFilePath . '/locations';
+
+        $locationsImagesFiles = File::allFiles($locationsImagesFilePath);
+
+        foreach ($locationsImagesFiles as $locationsImagesFile) {
+            $name = Str::replace(
+                '_',
+                ' ',
+                Str::remove('.png', $locationsImagesFile->getFilename())
+            );
+
+            $image = Image::create([
+                'name' => $name,
+            ]);
+
+            $image->addMedia($locationsImagesFile)
+                ->preservingOriginal()
+                ->toMediaCollection(MediaCollectionEnum::LOCATIONS->value);
         }
     }
 }

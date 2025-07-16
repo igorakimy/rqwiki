@@ -37,7 +37,7 @@ export const columns: ColumnDef<Image>[] = [
             const name = row.getValue('name')
             return h(Link, {
                 class: 'text-left font-medium',
-                href: route('images.show', {id: row.getValue('id')})
+                href: route('images.edit', {id: row.getValue('id')})
             }, () => name)
         },
         enableColumnFilter: true,

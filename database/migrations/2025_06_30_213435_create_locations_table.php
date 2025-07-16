@@ -22,6 +22,23 @@ return new class extends Migration
                 ->references('id')
                 ->on('location_types')
                 ->onDelete('cascade');
+
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
+        });
+
+        Schema::create('location_location_type', function (Blueprint $table) {
+            $table->foreignId('location_id')
+                ->constrained('locations')
+                ->cascadeOnDelete();
+
+            $table->foreignId('location_type_id')
+                ->constrained('location_types')
+                ->cascadeOnDelete();
+
+            $table->primary(['location_id', 'location_type_id']);
         });
     }
 
@@ -30,6 +47,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('location_location_type');
         Schema::dropIfExists('locations');
     }
 };

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('location_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('plural_name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

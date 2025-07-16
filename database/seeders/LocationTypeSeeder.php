@@ -25,6 +25,8 @@ class LocationTypeSeeder extends Seeder
         foreach ($locationTypes as $locationType) {
             LocationType::create([
                 'name' => $locationType['name'],
+                'plural_name' => $locationType['plural_name'],
+                'description' => $locationType['description'],
             ]);
         }
     }
