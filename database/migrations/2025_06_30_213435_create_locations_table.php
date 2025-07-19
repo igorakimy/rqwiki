@@ -14,19 +14,14 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('location_type_id');
-            $table->text('coords')->nullable();
-            $table->timestamps();
-
-            $table->foreign('location_type_id')
-                ->references('id')
-                ->on('location_types')
-                ->onDelete('cascade');
+            $table->text('description')->nullable();
 
             $table->foreignId('image_id')
                 ->nullable()
                 ->constrained('images')
                 ->nullOnDelete();
+
+            $table->timestamps();
         });
 
         Schema::create('location_location_type', function (Blueprint $table) {

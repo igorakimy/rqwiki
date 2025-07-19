@@ -88,3 +88,8 @@ interface MediaCollection {
     name: string;
     formatted_name: string;
 }
+
+export interface WorldMap {
+    name: string;
+    image: Image
+}

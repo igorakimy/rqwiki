@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Images\ImageController;
+use App\Http\Controllers\WorldMap\WorldMapController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,3 +19,7 @@ Route::resource('categories', CategoryController::class)
 
 // Images
 Route::resource('images', ImageController::class);
+
+// WorldMap
+Route::get('/world-map', [WorldMapController::class, 'index'])
+    ->name('world-map.index');

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CharacterClassSeeder::class);
         $this->call(LocationTypeSeeder::class);
         $this->call(LocationSeeder::class);
+        $this->call(WorldMapSeeder::class);
         $this->call(ElementSeeder::class);
         $this->call(RaceSeeder::class);
         $this->call(NpcGroupsSeeder::class);

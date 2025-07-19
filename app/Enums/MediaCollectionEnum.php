@@ -11,6 +11,7 @@ enum MediaCollectionEnum: string
     use EnumToArray;
 
     case DEFAULT = 'default';
+    case WORLD_MAP = 'world_map';
     case LOCATIONS = 'locations';
     case NPC = 'npc';
     case MONSTERS = 'monsters';
@@ -29,6 +30,7 @@ enum MediaCollectionEnum: string
     {
         return match ($this) {
             self::DEFAULT => 'По умолчанию',
+            self::WORLD_MAP => 'Карта мира',
             self::LOCATIONS => 'Локации',
             self::NPC => 'НПС',
             self::MONSTERS =>'Монстры',

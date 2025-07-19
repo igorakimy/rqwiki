@@ -22,6 +22,10 @@ const mainNavItems: NavItem[] = [
         // icon: LayoutGrid,
     },
     {
+        title: 'Карта мира',
+        href: '/world-map',
+    },
+    {
         title: 'Категории',
         href: '/categories',
     },

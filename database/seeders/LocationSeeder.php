@@ -31,7 +31,7 @@ class LocationSeeder extends Seeder
             $locationInst = Location::create([
                 'name' => $location['name'],
                 'description' => $location['description'],
-                'image_id' => $locationImage,
+                'image_id' => $locationImage->id,
             ]);
 
             $locationTypesIds = LocationType::whereIn('name', $location['types'])
