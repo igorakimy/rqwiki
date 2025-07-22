@@ -24,21 +24,20 @@ class WorldMapSeeder extends Seeder
      */
     public function run(): void
     {
-//        $image = Image::create([
-//            'name' => 'Карта мира'
-//        ]);
-//
-//        $imageFiles = File::allFiles(resource_path('images/world_map'));
-//
-//        $image->addMedia($imageFiles[0])
-//            ->preservingOriginal()
-//            ->toMediaCollection(MediaCollectionEnum::WORLD_MAP->value);
+        $image = Image::create([
+            'name' => 'Карта мира'
+        ]);
 
-//        $worldMap = WorldMap::create([
-//            'name' => 'Карта мира',
-//            'image_id' => $image->id,
-//        ]);
-        $worldMap = WorldMap::first();
+        $imageFiles = File::allFiles(resource_path('images/world_map'));
+
+        $image->addMedia($imageFiles[0])
+            ->preservingOriginal()
+            ->toMediaCollection(MediaCollectionEnum::WORLD_MAP->value);
+
+        $worldMap = WorldMap::create([
+            'name' => 'Карта мира',
+            'image_id' => $image->id,
+        ]);
 
         $worldMapLocations = collect(File::json(resource_path('data/world_map_locations.json')));
         $locations = Location::whereIn(

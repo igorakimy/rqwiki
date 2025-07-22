@@ -26,6 +26,10 @@ const mainNavItems: NavItem[] = [
         href: '/world-map',
     },
     {
+        title: 'Локации',
+        href: '/locations',
+    },
+    {
         title: 'Категории',
         href: '/categories',
     },
@@ -36,6 +40,10 @@ const footerNavItems: NavItem[] = [
         title: 'Изображения',
         href: '/images'
     },
+    {
+        title: 'Типы локаций',
+        href: '/location-types'
+    }
 ];
 </script>
 

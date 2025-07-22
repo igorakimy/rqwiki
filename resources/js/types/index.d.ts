@@ -93,3 +93,19 @@ export interface WorldMap {
     name: string;
     image: Image
 }
+
+export interface LocationType {
+    id: number;
+    name: string;
+    plural_name: string;
+    description?: string;
+}
+
+export interface Location {
+    id?: number;
+    name: string;
+    description?: string;
+    image: Image;
+    location_types: LocationType[];
+    categories: Category[];
+}

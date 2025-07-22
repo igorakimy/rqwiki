@@ -9,6 +9,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class ImageSeeder extends Seeder
 {
@@ -22,9 +24,17 @@ class ImageSeeder extends Seeder
     {
         $imagesFilePath = resource_path('images');
 
-        $locationsImagesFilePath = $imagesFilePath . '/locations';
+        $this->createLocationImages($imagesFilePath);
+        $this->createLocationBackgroundImage($imagesFilePath);
+    }
 
-        $locationsImagesFiles = File::allFiles($locationsImagesFilePath);
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
+    public function createLocationImages(string $path): void
+    {
+        $locationsImagesFiles = File::allFiles($path . '/locations');
 
         foreach ($locationsImagesFiles as $locationsImagesFile) {
             $name = Str::replace(
@@ -38,6 +48,26 @@ class ImageSeeder extends Seeder
             ]);
 
             $image->addMedia($locationsImagesFile)
+                ->preservingOriginal()
+                ->toMediaCollection(MediaCollectionEnum::LOCATIONS->value);
+        }
+    }
+
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
+    public function createLocationBackgroundImage(string $path): void
+    {
+        $locationsBgImagesFiles = File::allFiles($path . '/location_bg');
+
+        if (isset($locationsBgImagesFiles[0])) {
+            $file = $locationsBgImagesFiles[0];
+            $name = Str::ucfirst(Str::replace('_', ' ', $file->getFilenameWithoutExtension()));
+            $image = Image::create([
+                'name' => $name,
+            ]);
+            $image->addMedia($file)
                 ->preservingOriginal()
                 ->toMediaCollection(MediaCollectionEnum::LOCATIONS->value);
         }

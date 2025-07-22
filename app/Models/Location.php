@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasCategories;
+use App\Traits\HasImage;
 use App\Traits\HasPosition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Location extends Model
 {
-    use HasPosition, HasCategories;
+    use HasImage, HasPosition, HasCategories;
 
     protected $guarded = [];
 
@@ -18,7 +19,7 @@ class Location extends Model
      *
      * @return BelongsToMany
      */
-    public function locations_types(): BelongsToMany
+    public function location_types(): BelongsToMany
     {
         return $this->belongsToMany(
             LocationType::class,

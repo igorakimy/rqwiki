@@ -12,4 +12,5 @@ class Image extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $guarded = [];
+
 }

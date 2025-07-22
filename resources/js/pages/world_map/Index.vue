@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { BreadcrumbItem, WorldMap } from '@/types';
 
@@ -18,6 +19,10 @@ interface Props {
 
 defineProps<Props>();
 
+const goToLocation = (id: number) => {
+    router.get(route('locations.show', id));
+}
+
 </script>
 
 <template>
@@ -30,18 +35,30 @@ defineProps<Props>();
                     <CardTitle class="text-xl">Карта мира</CardTitle>
                 </CardHeader>
                 <CardContent class="px-10">
-                    <div>
-                        <img
-                            class="w-[902px] h-[902px] rounded-md"
-                            :src="world_map.image.media[0].original_url"
-                            alt="Карта мира"
-                            usemap="#world-map"
-                        >
-                        <map name="world-map">
-                            <area v-for="location in world_map.locations" :key="location.id" shape="poly" :coords="location.pivot.coords" href="/" :title="location.name" :alt="location.name">
-                        </map>
-                    </div>
+                    <ScrollArea class="whitespace-nowrap">
+                        <div class="overflow-x-auto">
+                            <img
+                                class="min-w-[902px] h-[902px] rounded-md"
+                                :src="world_map.image.media[0].original_url"
+                                alt="Карта мира"
+                                usemap="#world-map"
+                            >
+                            <map name="world-map">
+                                <area
+                                    class="cursor-pointer"
+                                    v-for="location in world_map.locations"
+                                    :key="location.id"
+                                    shape="poly"
+                                    :coords="location.pivot.coords"
+                                    @click="goToLocation(location.id)"
+                                    :title="location.name"
+                                    :alt="location.name"
+                                >
+                            </map>
+                        </div>
 
+                        <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
                 </CardContent>
             </Card>
         </div>

@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request): Response
     {
-        $perPage = $request->input('per_page', 10);
+        $perPage = $request->input('per_page', 100);
         $sortField = $request->input('sort_field', 'name');
         $sortDirection = $request->input('sort_direction', 'asc');
         $name = $request->input('name');

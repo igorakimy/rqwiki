@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-vue-next';
+import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, FilterXIcon } from 'lucide-vue-next';
 import type { DataTablePagination, DataTableRoutes } from '@/types';
 
 const props = defineProps<{
@@ -167,15 +167,27 @@ function getPages(current, total, delta = 2) {
     return pages
 }
 
+const resetFilters = () => {
+    columnFilters.value = [];
+    sorting.value = [];
+    table.resetColumnFilters();
+    table.resetSorting();
+}
+
 const pagesToShow = computed(() => getPages(currentPage.value, pageCount.value));
 
 </script>
 
 <template>
     <div class="flex justify-between py-4">
-        <Input class="max-w-sm" placeholder="Поиск..."
-               :model-value="table.getColumn('name')?.getFilterValue() as string"
-               @update:model-value="table.getColumn('name')?.setFilterValue($event)" />
+        <div class="flex flex-row gap-2">
+            <Input class="min-w-md" placeholder="Поиск..."
+                   :model-value="table.getColumn('name')?.getFilterValue() as string"
+                   @update:model-value="table.getColumn('name')?.setFilterValue($event)" />
+            <Button variant="outline" class="cursor-pointer" title="Сбросить фильтры" @click="resetFilters">
+                <FilterXIcon />
+            </Button>
+        </div>
 
         <Link v-if="routes.create" :href="props.routes.create || route(route().current())" >
             <Button variant="default">Добавить</Button>
