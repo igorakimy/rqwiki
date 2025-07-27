@@ -10,8 +10,8 @@ enum MonsterDefenceEnum: string
 {
     use EnumToArray;
 
-    case NO_DEF = 'Нет';
-    case LOW = 'Низкая';
-    case MIDDLE = 'Средняя';
-    case HIGH = 'Высокая';
+    case NO_DEF = 'нет';
+    case LOW = 'низкая';
+    case MIDDLE = 'средняя';
+    case HIGH = 'высокая';
 }

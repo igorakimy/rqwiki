@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use App\Models\Race;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,8 +24,11 @@ class RaceSeeder extends Seeder
         $races = File::json($racesFile);
 
         foreach ($races as $race) {
+            $image = Image::where('name', $race['name'])->first();
+
             Race::create([
                 'name' => $race['name'],
+                'image_id' => $image?->id,
             ]);
         }
     }

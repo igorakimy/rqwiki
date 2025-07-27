@@ -14,13 +14,18 @@ return new class extends Migration
         Schema::create('elements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('vulnerable_id')->nullable();
-            $table->timestamps();
 
-            $table->foreign('vulnerable_id')
-                ->references('id')
-                ->on('elements')
-                ->onDelete('cascade');
+            $table->foreignId('vulnerable_id')
+                ->nullable()
+                ->constrained('elements')
+                ->cascadeOnDelete();
+
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
+
+            $table->timestamps();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Element;
+use App\Models\Image;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,9 +24,12 @@ class ElementSeeder extends Seeder
         $elements = File::json($elementsFile);
 
         foreach ($elements as $element) {
+            $image = Image::where('name', $element['name'])->first();
+
             Element::create([
                 'name' => $element['name'],
                 'vulnerable_id' => null,
+                'image_id' => $image?->id,
             ]);
         }
 

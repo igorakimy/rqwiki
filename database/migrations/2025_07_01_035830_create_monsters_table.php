@@ -24,19 +24,33 @@ return new class extends Migration
             $table->boolean('is_boss')->default(false);
             $table->boolean('pick_up_loot')->default(false);
             $table->unsignedInteger('shield')->nullable();
-            $table->enum('defence', MonsterDefenceEnum::values())->default(MonsterDefenceEnum::NO_DEF->value);
+            $table->enum('defence', MonsterDefenceEnum::values())
+                ->default(MonsterDefenceEnum::NO_DEF->value);
             $table->unsignedInteger('experience')->default(0);
             $table->decimal('xp_per_hp')->default(0.00);
-            $table->enum('combat_mode', MonsterModeEnum::values())->default(MonsterModeEnum::MELEE->value);
+            $table->enum('combat_mode', MonsterModeEnum::values())
+                ->default(MonsterModeEnum::MELEE->value);
             $table->boolean('quest_only')->default(false);
-            $table->timestamps();
 
             $table->foreignId('race_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
             $table->foreignId('element_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
+
+            $table->foreignId('big_image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
+
+            $table->timestamps();
         });
 
         Schema::create('monster_has_called_monsters', function (Blueprint $table) {

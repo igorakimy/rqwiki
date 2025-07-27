@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorldMapSeeder::class);
         $this->call(ElementSeeder::class);
         $this->call(RaceSeeder::class);
+        $this->call(MonsterSeeder::class);
         $this->call(NpcGroupsSeeder::class);
         $this->call(QuestChainSeeder::class);
         $this->call(QuestTypeSeeder::class);

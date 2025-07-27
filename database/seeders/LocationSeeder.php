@@ -38,7 +38,7 @@ class LocationSeeder extends Seeder
                 ->pluck('id')
                 ->toArray();
 
-            $locationInst->locations_types()->sync($locationTypesIds);
+            $locationInst->location_types()->sync($locationTypesIds);
 
             $locationCategories = Category::whereIn('name', $location['categories'])
                 ->pluck('id')

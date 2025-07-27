@@ -109,3 +109,39 @@ export interface Location {
     location_types: LocationType[];
     categories: Category[];
 }
+
+export interface Race {
+    id?: number;
+    name: string;
+    image: Image;
+}
+
+export interface Element {
+    id?: number;
+    name: string;
+    image: Image;
+}
+
+export interface Monster {
+    id?: number;
+    name: string;
+    level: number;
+    health_points: number;
+    element_strength: number;
+    is_aggressive: boolean;
+    is_elite: boolean;
+    is_boss: boolean;
+    pick_up_loot: boolean;
+    shield: number;
+    defence: string;
+    experience: number;
+    xp_per_hp: number;
+    combat_mode: string;
+    quest_only: boolean;
+    race: Race;
+    element: Element;
+    image: Image;
+    big_image?: Image|null;
+    locations: Location[];
+    categories: Category[];
+}

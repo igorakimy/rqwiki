@@ -4,6 +4,7 @@ use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Images\ImageController;
 use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Locations\LocationTypeController;
+use App\Http\Controllers\Monsters\MonsterController;
 use App\Http\Controllers\WorldMap\WorldMapController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,3 +32,6 @@ Route::resource('locations', LocationController::class);
 
 // Location types
 Route::resource('location-types', LocationTypeController::class);
+
+// Monsters
+Route::resource('monsters', MonsterController::class);
