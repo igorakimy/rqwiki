@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('npcs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('npc_group_id');
-            $table->timestamps();
 
-            $table->foreign('npc_group_id')
-                ->references('id')
-                ->on('npc_groups')
-                ->onDelete('cascade');
+            $table->foreignId('image_id')
+                ->constrained('images')
+                ->nullOnDelete();
+
+            $table->timestamps();
         });
 
         Schema::create('location_npcs', function (Blueprint $table) {
@@ -28,6 +27,13 @@ return new class extends Migration
             $table->foreignId('npc_id')->constrained()->cascadeOnDelete();
 
             $table->primary(['location_id', 'npc_id']);
+        });
+
+        Schema::create('npc_npc_group', function (Blueprint $table) {
+            $table->foreignId('npc_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('npc_group_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['npc_id', 'npc_group_id']);
         });
     }
 
@@ -37,6 +43,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('location_npcs');
+        Schema::dropIfExists('npc_npc_group');
         Schema::dropIfExists('npcs');
     }
 };

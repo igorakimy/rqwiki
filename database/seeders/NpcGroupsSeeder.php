@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\NpcGroups;
+use App\Models\NpcGroup;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +23,7 @@ class NpcGroupsSeeder extends Seeder
         $npcGroups = File::json($npcGroupsFile);
 
         foreach ($npcGroups as $npcGroup) {
-            NpcGroups::create([
+            NpcGroup::create([
                 'name' => $npcGroup['name'],
                 'plural_name' => $npcGroup['plural_name'],
                 'description' => $npcGroup['description'],

@@ -50,7 +50,6 @@ const table = useVueTable({
     state: {
         get sorting() { return sorting.value },
         get pagination() { return pagination.value },
-        set pagination(value) { pagination.value = value },
         get columnFilters() { return columnFilters.value },
         get columnVisibility() { return columnVisibility.value },
     },
@@ -61,6 +60,7 @@ const table = useVueTable({
     manualPagination: true,
     manualSorting: true,
     manualFiltering: true,
+    pageCount: props.pagination.last_page,
     onPaginationChange: changePagination,
     onSortingChange: changeSorting,
     onColumnFiltersChange: changeFilters,

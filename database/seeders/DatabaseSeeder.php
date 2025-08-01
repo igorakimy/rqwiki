@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RaceSeeder::class);
         $this->call(MonsterSeeder::class);
         $this->call(NpcGroupsSeeder::class);
+        $this->call(NpcSeeder::class);
         $this->call(QuestChainSeeder::class);
         $this->call(QuestTypeSeeder::class);
         $this->call(BonusSeeder::class);

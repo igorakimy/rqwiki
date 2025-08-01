@@ -34,6 +34,10 @@ const mainNavItems: NavItem[] = [
         href: '/monsters',
     },
     {
+        title: 'НПС',
+        href: '/npcs',
+    },
+    {
         title: 'Категории',
         href: '/categories',
     },

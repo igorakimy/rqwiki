@@ -145,3 +145,19 @@ export interface Monster {
     locations: Location[];
     categories: Category[];
 }
+
+export interface NpcGroup {
+    id?: number;
+    name: string;
+    plural_name: string;
+    description: string;
+}
+
+export interface NPC {
+    id?: number;
+    name: string;
+    image: Image;
+    npc_groups: NpcGroup[];
+    locations: Location[];
+    categories: Category[];
+}
