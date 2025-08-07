@@ -20,37 +20,39 @@ return new class extends Migration
             $table->text('condition')->nullable();
             $table->text('condition_description');
             $table->text('explanation')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->unsignedBigInteger('quest_type_id');
-            $table->unsignedBigInteger('quest_chain_id');
-            $table->unsignedBigInteger('npc_from_id');
-            $table->unsignedBigInteger('npc_to_id');
+
+            $table->foreignId('quest_type_id')
+                ->constrained('quest_types')
+                ->cascadeOnDelete();
+
+            $table->foreignId('quest_chain_id')
+                ->nullable()
+                ->constrained('quest_chains')
+                ->cascadeOnDelete();
+
+            $table->foreignId('npc_from_id')
+                ->nullable()
+                ->constrained('npcs')
+                ->cascadeOnDelete();
+
+            $table->foreignId('npc_to_id')
+                ->nullable()
+                ->constrained('npcs')
+                ->cascadeOnDelete();
+
             $table->timestamps();
+        });
 
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('quests')
-                ->onDelete('cascade');
+        Schema::create('quest_prerequisite', function (Blueprint $table) {
+            $table->foreignId('quest_id')
+                ->constrained('quests')
+                ->cascadeOnDelete();
 
-            $table->foreign('quest_type_id')
-                ->references('id')
-                ->on('quest_types')
-                ->onDelete('cascade');
+            $table->foreignId('prev_quest_id')
+                ->constrained('quests')
+                ->cascadeOnDelete();
 
-            $table->foreign('quest_chain_id')
-                ->references('id')
-                ->on('quest_chains')
-                ->onDelete('cascade');
-
-            $table->foreign('npc_from_id')
-                ->references('id')
-                ->on('npcs')
-                ->onDelete('cascade');
-
-            $table->foreign('npc_to_id')
-                ->references('id')
-                ->on('npcs')
-                ->onDelete('cascade');
+            $table->primary(['quest_id', 'prev_quest_id']);
         });
     }
 
@@ -59,6 +61,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('quest_prerequisite');
         Schema::dropIfExists('quests');
     }
 };

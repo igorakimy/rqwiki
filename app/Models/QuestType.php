@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class QuestType extends Model implements HasMedia
+class QuestType extends Model
 {
-    use InteractsWithMedia;
+    use HasImage;
 
     protected $guarded = [];
 }

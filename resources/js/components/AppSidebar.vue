@@ -38,6 +38,10 @@ const mainNavItems: NavItem[] = [
         href: '/npcs',
     },
     {
+        title: 'Квесты',
+        href: '/quests',
+    },
+    {
         title: 'Категории',
         href: '/categories',
     },

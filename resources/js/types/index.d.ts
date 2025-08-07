@@ -161,3 +161,31 @@ export interface NPC {
     locations: Location[];
     categories: Category[];
 }
+
+export interface QuestType {
+    id?: number;
+    name: string;
+}
+
+export interface QuestChain {
+    id?: number;
+    name: string;
+}
+
+export interface Quest {
+    id?: number;
+    name: string;
+    parent?: Quest | null;
+    required_level: number;
+    gold: number;
+    experience: number;
+    condition: string;
+    condition_description?: string;
+    explanation?: string;
+    quest_type: QuestType;
+    quest_chain?: QuestChain | null;
+    npc_from: NPC | null;
+    npc_to: NPC | null;
+    prev_quests: Quest[];
+    next_quests: Quest[];
+}

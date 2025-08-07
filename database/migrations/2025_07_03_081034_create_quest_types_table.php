@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('quest_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

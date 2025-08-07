@@ -6,6 +6,7 @@ use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Locations\LocationTypeController;
 use App\Http\Controllers\Monsters\MonsterController;
 use App\Http\Controllers\Npc\NpcController;
+use App\Http\Controllers\Quests\QuestController;
 use App\Http\Controllers\WorldMap\WorldMapController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,3 +40,6 @@ Route::resource('monsters', MonsterController::class);
 
 // NPC
 Route::resource('npcs', NpcController::class);
+
+// Quests
+Route::resource('quests', QuestController::class);

@@ -17,7 +17,8 @@ class QuestTypeSeeder extends Seeder
     {
         $questTypes = [
             'Обычное',
-            'Ежедневное'
+            'Ежедневное',
+            'Повторяемое',
         ];
 
         foreach ($questTypes as $questType) {

@@ -3,7 +3,6 @@
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { BreadcrumbItem, DataTablePagination, DataTableRoutes, NPC, NpcGroup } from '@/types';
-import { Card, CardContent, CardTitle, CardHeader, CardDescription } from '@/components/ui/card';
 import DataTable from '@/components/DataTable.vue';
 import { columns } from '@/components/npcs/columns';
 import Heading from '@/components/Heading.vue';

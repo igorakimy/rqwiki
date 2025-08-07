@@ -79,9 +79,9 @@ export const columns: ColumnDef<NPC>[] = [
     {
         id: 'actions',
         cell: ({ row }) => {
-            const monster = row.original
+            const npc = row.original
             return h('div', { class: 'relative text-end' }, h(DropdownAction, {
-                entity: monster,
+                entity: npc,
                 routes: {
                     destroy: route('npcs.destroy', {id: row.getValue('id')}),
                     edit: route('npcs.edit', {id: row.getValue('id')}),

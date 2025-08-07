@@ -1,12 +1,10 @@
 <script setup lang="ts">
 
 import { Head, Link } from '@inertiajs/vue3';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem, NPC } from '@/types';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Heading from '@/components/Heading.vue';
-import { columns } from '@/components/categories/columns';
 
 interface Props {
     npc: NPC;
