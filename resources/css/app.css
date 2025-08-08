@@ -7,8 +7,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer base {
+    @font-face {
+        font-family: 'AGPresquire';
+        font-display: swap;
+        src: url('@/assets/fonts/AGPresquire-Roman.eot');
+        src: url('@/assets/fonts/AGPresquire-Roman.woff2') format('woff2'),
+            url('@/assets/fonts/AGPresquire-Roman.woff') format('woff'),
+            url('@/assets/fonts/AGPresquire-Roman.ttf') format('truetype'),
+            url('@/assets/fonts/AGPresquire-Roman.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+}
+
 @theme inline {
-    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: AGPresquire, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -98,7 +112,8 @@
     body,
     html {
         --font-sans:
-            'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            'AGPresquire', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        text-shadow: 0 0 0 rgba(0,0,0,0.5);
     }
 }
 
