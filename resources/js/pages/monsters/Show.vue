@@ -34,7 +34,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <CardTitle class="text-xl">{{ monster.name }}</CardTitle>
                     </CardHeader>
                     <CardContent class="px-6">
-                        <div class="max-w-2xl rounded-xl shadow-lg">
+                        <div class="max-w-2xl">
                             <div class="flex flex-col gap-6">
                                 <div class="flex-shrink-0 flex items-center justify-center">
                                     <img
