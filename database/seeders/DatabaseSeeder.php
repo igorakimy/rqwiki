@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(QuestSeeder::class);
         $this->call(BonusSeeder::class);
         $this->call(EquipmentTypesSeeder::class);
+        $this->call(EquipmentSeeder::class);
     }
 }

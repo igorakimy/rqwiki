@@ -28,6 +28,32 @@ class ImageSeeder extends Seeder
         $this->createLocationBackgroundImage($imagesFilePath);
         $this->createRacesImages($imagesFilePath);
         $this->createElementsImages($imagesFilePath);
+        $this->createClassesImages($imagesFilePath);
+    }
+
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
+    public function createClassesImages(string $path): void
+    {
+        $classesImagesFiles = File::allFiles($path . '/classes');
+
+        foreach ($classesImagesFiles as $classesImagesFile) {
+            $name = Str::replace(
+                '_',
+                ' ',
+                $classesImagesFile->getFilenameWithoutExtension()
+            );
+
+            $image = Image::create([
+                'name' => 'Класс-' . $name,
+            ]);
+
+            $image->addMedia($classesImagesFile)
+                ->preservingOriginal()
+                ->toMediaCollection(MediaCollectionEnum::CHARACTER_CLASSES->value);
+        }
     }
 
     /**

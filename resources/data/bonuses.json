@@ -81,7 +81,7 @@
     },
     {
         "name": "Сила",
-        "name_formatted": "к Сила",
+        "name_formatted": "к Силе",
         "name_alt": null,
         "name_alt_formatted": null,
         "is_pvp": false,
@@ -385,7 +385,7 @@
     },
     {
         "name": "Восстановление здоровья",
-        "name_formatted": "к восстановлению здоровья",
+        "name_formatted": "к Восстановлению здоровья",
         "name_alt": null,
         "name_alt_formatted": null,
         "is_pvp": false,

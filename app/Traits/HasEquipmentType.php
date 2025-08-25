@@ -16,7 +16,7 @@ trait HasEquipmentType
     /**
      * @return mixed
      */
-    public function equipmentType(): BelongsTo
+    public function equipment_type(): BelongsTo
     {
         return $this->belongsTo(EquipmentType::class);
     }

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('equipment_type_id');
             $table->enum('item_class', EquipmentItemClassEnum::values())
                 ->default(EquipmentItemClassEnum::C);
             $table->tinyInteger('required_level')->default(1);
@@ -26,12 +25,29 @@ return new class extends Migration
                 ->default(GenderEnum::ANY->value);
             $table->integer('selling_price')->default(1);
             $table->text('description')->nullable();
-            $table->timestamps();
 
-            $table->foreign('equipment_type_id')
-                ->references('id')
-                ->on('equipment_types')
-                ->onDelete('cascade');
+            $table->foreignId('equipment_type_id')
+                ->constrained('equipment_types')
+                ->cascadeOnDelete();
+
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->nullOnDelete();
+
+            $table->timestamps();
+        });
+
+        Schema::create('class_equipment', function (Blueprint $table) {
+            $table->foreignId('class_id')
+                ->constrained('classes')
+                ->cascadeOnDelete();
+
+            $table->foreignId('equipment_id')
+                ->constrained('equipment')
+                ->cascadeOnDelete();
+
+            $table->primary(['class_id', 'equipment_id']);
         });
     }
 
@@ -40,6 +56,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('class_equipment');
         Schema::dropIfExists('equipment');
     }
 };

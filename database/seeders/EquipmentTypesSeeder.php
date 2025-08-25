@@ -26,6 +26,7 @@ class EquipmentTypesSeeder extends Seeder
             EquipmentType::create([
                 'name' => $equipmentType['name'],
                 'plural_name' => $equipmentType['plural_name'],
+                'type' => $equipmentType['type'],
             ]);
         }
     }

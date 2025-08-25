@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Equipment\EquipmentController;
 use App\Http\Controllers\Images\ImageController;
 use App\Http\Controllers\Locations\LocationController;
 use App\Http\Controllers\Locations\LocationTypeController;
@@ -43,3 +44,6 @@ Route::resource('npcs', NpcController::class);
 
 // Quests
 Route::resource('quests', QuestController::class);
+
+// Equipment
+Route::resource('equipment', EquipmentController::class);

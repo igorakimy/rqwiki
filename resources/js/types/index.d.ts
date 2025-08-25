@@ -49,11 +49,6 @@ export interface DataTablePagination {
     last_page: number;
 }
 
-export interface DataTableFilter {
-    id: string,
-    value: string,
-}
-
 export interface DataTableRoute {
     url: string;
     id: string;
@@ -65,6 +60,13 @@ export interface DataTableRoutes {
     show?: DataTableRoute;
     edit?: DataTableRoute;
     destroy?: DataTableRoute;
+}
+
+export interface DataTableFilter {
+    column: string;
+    label: string;
+    value: string;
+    options: Array;
 }
 
 export interface Media {
@@ -188,4 +190,56 @@ export interface Quest {
     npc_to: NPC | null;
     prev_quests: Quest[];
     next_quests: Quest[];
+}
+
+export interface CharacterClass {
+    id?: number;
+    name: string;
+    plural_name: string;
+    image: Image | null;
+    parent: CharacterClass | null;
+}
+
+export interface Bonusable {
+    bonus_id: number;
+    value: number;
+    value_type: string;
+    duration: number;
+    use_alt_name: boolean;
+    special_property: string;
+}
+
+export interface Bonus {
+    id?: number;
+    name: string;
+    name_formatted: string;
+    name_alt: string;
+    name_alt_formatted: string;
+    is_pvp: boolean;
+    description?: string;
+    pivot: Bonusable;
+}
+
+export interface EquipmentType {
+    id?: number;
+    name: string;
+    plural_name: string;
+    type: string;
+}
+
+export interface Equipment {
+    id?: number;
+    name: string;
+    equipment_type: EquipmentType;
+    item_class: string;
+    required_level: number;
+    max_slots_amount: number;
+    defence: number;
+    gender: string;
+    selling_price: number;
+    description: string;
+    classes: CharacterClass[];
+    image: Image | null;
+    categories: Category[];
+    bonuses: Bonus[];
 }

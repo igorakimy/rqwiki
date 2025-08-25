@@ -19,6 +19,16 @@ trait HasBonuses
      */
     public function bonuses(): MorphToMany
     {
-        return $this->morphToMany(Bonus::class, 'bonusable');
+        return $this->morphToMany(Bonus::class, 'bonusable')
+            ->orderByPivot('order')
+            ->withPivot([
+                'bonus_id',
+                'value',
+                'value_type',
+                'duration',
+                'use_alt_name',
+                'special_property',
+                'order'
+            ]);
     }
 }

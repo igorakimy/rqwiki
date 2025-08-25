@@ -15,13 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('plural_name');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->timestamps();
 
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('classes')
-                ->onDelete('cascade');
+            $table->foreignId('image_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('classes')
+                ->cascadeOnDelete();
+
+            $table->timestamps();
         });
     }
 

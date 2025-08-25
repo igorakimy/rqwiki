@@ -16,17 +16,20 @@ import { Input } from '@/components/ui/input';
 import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, FilterXIcon } from 'lucide-vue-next';
-import type { DataTablePagination, DataTableRoutes } from '@/types';
+import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-vue-next';
+import type { DataTableFilter, DataTablePagination, DataTableRoutes } from '@/types';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     routes: DataTableRoutes;
     pagination?: DataTablePagination;
-    filters?: Array;
+    filters?: Array<DataTableFilter>;
+    showFilters: boolean;
     columnVisibility?: object;
-}>()
+}>(), {
+    showFilters: false
+})
 
 const pageSizes = [10, 50, 100];
 
@@ -167,13 +170,6 @@ function getPages(current, total, delta = 2) {
     return pages
 }
 
-const resetFilters = () => {
-    columnFilters.value = [];
-    sorting.value = [];
-    table.resetColumnFilters();
-    table.resetSorting();
-}
-
 const pagesToShow = computed(() => getPages(currentPage.value, pageCount.value));
 
 </script>
@@ -181,12 +177,12 @@ const pagesToShow = computed(() => getPages(currentPage.value, pageCount.value))
 <template>
     <div class="flex justify-between py-4">
         <div class="flex flex-row gap-2">
-            <Input class="min-w-md" placeholder="Поиск..."
+            <Input class="w-[250px]" placeholder="Поиск..."
                    :model-value="table.getColumn('name')?.getFilterValue() as string"
                    @update:model-value="table.getColumn('name')?.setFilterValue($event)" />
-            <Button variant="outline" class="cursor-pointer" title="Сбросить фильтры" @click="resetFilters">
-                <FilterXIcon />
-            </Button>
+
+
+<!--            <DataTableFilters v-if="showFilters" :table="table" :filters="filters?.filter(f => f.column !== 'name')" />-->
         </div>
 
         <Link v-if="routes.create" :href="props.routes.create || route(route().current())" >

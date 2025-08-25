@@ -30,6 +30,10 @@ const mainNavItems: NavItem[] = [
         href: '/locations',
     },
     {
+        title: 'Экипировка',
+        href: '/equipment',
+    },
+    {
         title: 'Монстры',
         href: '/monsters',
     },
